@@ -1,13 +1,8 @@
 {
   "settings": {
+    "disable_github_check": true
   },
   "rules": {
-    "pull_request": "orta/peril-bootstrap@dangerfiles/pr.js",
-    "issues": "orta/peril-bootstrap@dangerfiles/issue.js"
-  },
-  "repos" : {
-    "orta/ORStackView": {
-      "issues.opened": "lock_old_issues.ts"
-    }
+    "basic rules": "org/allRepos.ts"
   }
 }
