@@ -3,6 +3,7 @@
     "disable_github_check": true
   },
   "rules": {
-    "pull_request": "org/allRepos.ts"
+    "pull_request": "org/allRepos.ts",
+    "issues": "orta/peril-bootstrap@dangerfiles/issue.js"
   }
 }
