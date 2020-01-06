@@ -4,7 +4,7 @@ import yarn from 'danger-plugin-yarn';
 // NOTE: - The following tasks run on ALL BetterPT repositories.
 
 // Highlight package dependencies
-const highlightDependencies = () => yarn();
+const highlightDependencies = async () => { await yarn() }
 
 // All PRs should have a body
 const checkIfPrsHaveBody = () => {
@@ -16,6 +16,6 @@ const checkIfPrsHaveBody = () => {
 
 
 export default async () => {
-  await highlightDependencies();
+  highlightDependencies();
   checkIfPrsHaveBody();
 }
