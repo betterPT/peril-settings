@@ -10,6 +10,6 @@ import yarn from 'danger-plugin-yarn';
 export default async () => {
   const pr = danger.github.pr;
   if (pr.body.length === null || pr.body.length === 0) {
-    fail('Please add a description to your PR. No PR is too small to warrant a description.')
+    fail('🖍 Please add a description to your PR. All PRs must have a description.')
   }
 }
