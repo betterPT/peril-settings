@@ -14,6 +14,7 @@ const checkIfPrsHaveBody = () => {
   }
 }
 
+
 export default async () => {
   await highlightDependencies();
   checkIfPrsHaveBody();

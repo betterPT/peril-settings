@@ -3,6 +3,6 @@
     "disable_github_check": true
   },
   "rules": {
-    "basic rules": "org/allRepos.ts"
+    "pull_request": "org/allRepos.ts"
   }
 }
