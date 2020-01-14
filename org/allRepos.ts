@@ -7,7 +7,7 @@ import yarn from 'danger-plugin-yarn';
 // const highlightDependencies = async () => { await yarn() }
 
 const checkBranchPrefix = () => {
-  const branch = danger.github.pr.head.label;
+  const branch = danger.github.pr.head;
   warn(`Head is:${branch}`);
 }
 
