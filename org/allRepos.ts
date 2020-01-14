@@ -7,9 +7,9 @@ const validBranchNames = ['story/', 'bug/', 'task/', 'trivial', 'staging', 'mast
 
 const checkBranchPrefix = () => {
   const branchName = danger.github.pr.head.ref;
-  warn(`Head is ${branchName}`);
   const result = validBranchNames.some(value => branchName.includes(value))
-  if (result === false) { 
+  if (result === false) {
+    warn(`Merge ref is ${branchName}`);
     warn('🌲 Your branch name must be of type story, task, trivial, or bug.')
   }
 }
