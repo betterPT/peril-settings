@@ -6,7 +6,8 @@ import { danger, warn, fail, GitHubCommit, markdown } from "danger"
 const validBranchNames = ['story/', 'bug/', 'task/', 'trivial', 'staging', 'master', 'development'];
 
 const checkBranchPrefix = () => {
-  const branchName = danger.github.pr.head.ref
+  const branchName = danger.github.pr.head.ref;
+  warn(`Head is ${branchName}`);
   const result = validBranchNames.some(value => branchName.includes(value))
   if (result === false) warn('🌲 Your branch name must be of type story, task, trivial, or bug.')
 }
