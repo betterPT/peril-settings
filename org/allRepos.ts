@@ -6,10 +6,19 @@ import yarn from 'danger-plugin-yarn';
 // Highlight package dependencies
 // const highlightDependencies = async () => { await yarn() }
 
-// All PRs should have a body
-export default async () => {
+const checkBranchPrefix = () => {
+  const branch = danger.github.pr.head.label;
+  warn(`Head is:${branch}`);
+}
+
+const checkPrBody = () => {
   const pr = danger.github.pr;
   if (pr.body.length === null || pr.body.length === 0) {
     fail('🖍 Please add a description to your PR. All PRs must have a description.')
   }
+}
+// All PRs should have a body
+export default async () => {
+  checkBranchPrefix()
+  checkPrBody()
 }
