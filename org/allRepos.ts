@@ -23,7 +23,5 @@ const checkPrBody = () => {
 // All PRs should have a body
 export default async () => {
   checkPrBody()
-  await checkBranchPrefix()
+  checkBranchPrefix()
 }
-
-console.log(checkBranchPrefix())
