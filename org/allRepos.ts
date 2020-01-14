@@ -1,14 +1,14 @@
 import { danger, warn, fail, GitHubCommit, markdown } from "danger"
-import yarn from 'danger-plugin-yarn';
 
 // NOTE: - The following tasks run on ALL BetterPT repositories.
 
-// Highlight package dependencies
-// const highlightDependencies = async () => { await yarn() }
+// Valid branch prefixes and names
+const validBranchNames = ['story/', 'bug/', 'task/', 'trivial', 'staging', 'master', 'development'];
 
 const checkBranchPrefix = () => {
-  const branch = danger.github.pr.head.ref;
-  warn(`Head is:${branch}`);
+  const branchName = danger.github.pr.head.ref
+  const result = validBranchNames.some(value => branchName.includes(value))
+  if (result === false) warn('🌲 Your branch name must be of type story, task, trivial, or bug.')
 }
 
 const checkPrBody = () => {
@@ -22,3 +22,5 @@ export default async () => {
   checkBranchPrefix()
   checkPrBody()
 }
+
+console.log(checkBranchPrefix())
