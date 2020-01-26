@@ -31,7 +31,7 @@ const checkIsUsingYarn = async () => {
     tree_sha: pr.base.sha
   })
 
-  const isUsingYarn = rootContents.data.tree.find((file: { path: string }) => file.path.includes('yarn.lock'));
+  const isUsingYarn = rootContents.data.tree.find((file: { path: string }) => file.path == 'yarn.lock');
 
   if (!isUsingYarn) { 
     warn('🧶 You are not using yarn in this project. All projects must use yarn by 15/02/2020');
