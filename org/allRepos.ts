@@ -23,9 +23,15 @@ const checkPrBody = () => {
 
 const checkIsUsingYarn = async () => {
   // Pull Request
+  // const branchName = danger.github.pr.head.ref
   const pr = danger.github.pr;
+  const prSha = danger.github.pr.head.sha;
 
-  const rootContents = await danger.github.api.git.getTree();
+  const rootContents = await danger.github.api.git.getTree({
+    owner: pr.base.user.login,
+    repo: pr.base.repo.name,
+    tree_sha: prSha
+  });
 
   const isUsingYarn = rootContents.data.tree.find((file: { path: string }) => file.path == 'yarn.lock');
 
