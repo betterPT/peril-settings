@@ -1,4 +1,5 @@
 import { danger, warn, fail, GitHubCommit, markdown } from "danger"
+import * as dfn from 'date-fns';
 
 // NOTE: - The following tasks run on ALL BetterPT repositories.
 
@@ -23,22 +24,36 @@ const checkPrBody = () => {
 
 const checkIsUsingYarn = async () => {
   // Pull Request
-  // const branchName = danger.github.pr.head.ref
   const pr = danger.github.pr;
+
+  // The SHA of the HEAD of the pull request
   const prSha = danger.github.pr.head.sha;
 
+  // The contents of the root of the repo
   const rootContents = await danger.github.api.git.getTree({
     owner: pr.base.user.login,
     repo: pr.base.repo.name,
     tree_sha: prSha
   });
 
+  // Does the pull request contain a yarn.lock file?
   const isUsingYarn = rootContents.data.tree.find((file: { path: string }) => file.path == 'yarn.lock');
 
+  // The established cut-off date for using yarn.
+  const cutOffDate = new Date(2020, 1, 15);
+
+  // Check to see if the project is using yarn and if it is before or after the cut-off date
   if (!isUsingYarn) { 
-    warn('🧶 You are not using yarn in this project. All projects must use yarn by 15/02/2020');
-    return;
-}
+    const isBeforeCutOffDate = dfn.isFuture(cutOffDate)
+
+    if (isBeforeCutOffDate) {
+      warn('🧶 You are not using yarn in this project. All projects must use yarn by 02/15/2020.');
+      return;
+    } else if (!isBeforeCutOffDate) {
+      fail('🧶 You are not using yarn in this project.');
+      return
+    }
+  }
   console.log('This project is using yarn');
 }
 
