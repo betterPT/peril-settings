@@ -4,7 +4,7 @@ import * as dfn from 'date-fns';
 // NOTE: - The following tasks run on ALL BetterPT repositories.
 
 // Valid branch prefixes and names
-const validBranchNames = ['story/', 'bug/', 'task/', 'hotfix/', 'trivial', 'staging', 'master', 'development'];
+const validBranchNames = ['story/', 'bug/', 'task/', 'hotfix/', 'trivial', 'staging', 'master', 'development', 'renovate'];
 
 const checkBranchPrefix = () => {
   const branchName = danger.github.pr.head.ref;
